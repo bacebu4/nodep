@@ -1,6 +1,20 @@
+import { IncomingHttpHeaders } from 'http';
+
+type UnknownObject = Record<string, unknown>;
+
+interface Route {
+  route: string;
+  handler: (payload: {
+    body: UnknownObject;
+    params: UnknownObject;
+    query: UnknownObject;
+    headers: IncomingHttpHeaders;
+  }) => unknown;
+}
+
 export class URLParser {
-  query: Record<string, unknown>;
-  params: Record<string, unknown>;
+  query: UnknownObject;
+  params: UnknownObject;
   matchingUrl: string;
   constructor(incomingUrl: string, givenUrls: string[]);
 }

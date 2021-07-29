@@ -5,6 +5,8 @@ const { Database } = require('./lib/sql/Database');
 const { URLParser } = require('./lib/server/URLParser');
 const { Server } = require('./lib/server/Server/Server');
 
+// @ts-check
+
 (async () => {
   const config = await new Config('./src/config');
 
