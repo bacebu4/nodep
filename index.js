@@ -3,6 +3,7 @@
 const Config = require('./lib/config');
 const { Database } = require('./lib/sql/Database');
 const { URLParser } = require('./lib/server/URLParser');
+const { Server } = require('./lib/server/Server/Server');
 
 (async () => {
   const config = await new Config('./src/config');
@@ -31,4 +32,6 @@ const { URLParser } = require('./lib/server/URLParser');
     givenUrls
   );
   console.log({ matchingUrl, params, query });
+
+  new Server().start();
 })();
