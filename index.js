@@ -17,21 +17,38 @@ const { Server } = require('./lib/server/Server/Server');
   console.log(res[1]);
 
   const givenUrls = [
-    'id/:key/update',
-    'id/:key/delete',
-    'users/get',
-    'users/get/:id',
+    {
+      route: 'id/:key/update',
+      handle() {
+        console.log('hello1');
+      },
+    },
+    {
+      route: 'id/:key/delete',
+      handle() {
+        console.log('hello2');
+      },
+    },
+    {
+      route: 'users/get',
+      handle() {
+        console.log('hello3');
+      },
+    },
+    {
+      route: 'users/get/:id',
+      handle() {
+        console.log('hello4');
+      },
+    },
   ];
 
   // const rawIncomingUrl = 'id/124/update';
   // const rawIncomingUrl = 'users/get';
   const rawIncomingUrl = 'users/get/23?apiKey=123&key=avx';
 
-  const { matchingUrl, params, query } = new URLParser(
-    rawIncomingUrl,
-    givenUrls
-  );
-  console.log({ matchingUrl, params, query });
+  const { handler, params, query } = new URLParser(rawIncomingUrl, givenUrls);
+  console.log({ handler, params, query });
 
   new Server().start();
 })();
