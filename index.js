@@ -2,7 +2,7 @@
 
 // const Config = require('./lib/config');
 // const { Database } = require('./lib/sql/Database');
-const { Server } = require('./lib/server/Server/Server');
+const server = require('./lib/server/Server/Server');
 
 // @ts-check
 
@@ -48,17 +48,5 @@ const { Server } = require('./lib/server/Server/Server');
     },
   ];
 
-  // const rawIncomingUrl = 'id/124/update';
-  // const rawIncomingUrl = 'users/get';
-  // const requestUrl = 'users/get/23?apiKey=123&key=avx';
-
-  // const [error, { handler, params, query }] = URLParser.from({
-  //   requestUrl,
-  //   requestMethod: 'GET',
-  //   routes,
-  // });
-  // console.log({ handler, params, query });
-  // console.log(error);
-
-  new Server(routes).start();
+  server(routes).start();
 })();
