@@ -18,7 +18,7 @@ const { Server } = require('./lib/server/Server/Server');
   const res = await db.findAll('users', { name: 'vasya' });
   console.log(res[1]);
 
-  const givenUrls = [
+  const routes = [
     {
       path: 'id/:key/update',
       handle() {
@@ -51,14 +51,15 @@ const { Server } = require('./lib/server/Server/Server');
 
   // const rawIncomingUrl = 'id/124/update';
   // const rawIncomingUrl = 'users/get';
-  const rawIncomingUrl = 'users/get/23?apiKey=123&key=avx';
+  const requestUrl = 'users/get/23?apiKey=123&key=avx';
 
-  const { handler, params, query } = new URLParser(
-    rawIncomingUrl,
-    'GET',
-    givenUrls
-  );
+  const [error, { handler, params, query }] = URLParser.from({
+    requestUrl,
+    requestMethod: 'GET',
+    routes,
+  });
   console.log({ handler, params, query });
+  console.log(error);
 
   new Server().start();
 })();
