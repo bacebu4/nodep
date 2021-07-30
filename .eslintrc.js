@@ -3,6 +3,7 @@ module.exports = {
     commonjs: true,
     es6: true,
     node: true,
+    jest: true,
   },
   extends: 'metarhia',
   globals: {
@@ -15,5 +16,6 @@ module.exports = {
   rules: {
     'arrow-parens': 0,
     indent: 0,
+    'max-len': 0,
   },
 };
