@@ -20,28 +20,32 @@ const { Server } = require('./lib/server/Server/Server');
 
   const givenUrls = [
     {
-      route: 'id/:key/update',
+      path: 'id/:key/update',
       handle() {
         console.log('hello1');
       },
+      method: 'GET',
     },
     {
-      route: 'id/:key/delete',
+      path: 'id/:key/delete',
       handle() {
         console.log('hello2');
       },
+      method: 'GET',
     },
     {
-      route: 'users/get',
+      path: 'users/get',
       handle() {
         console.log('hello3');
       },
+      method: 'GET',
     },
     {
-      route: 'users/get/:id',
+      path: 'users/get/:id',
       handle() {
         console.log('hello4');
       },
+      method: 'GET',
     },
   ];
 
@@ -49,7 +53,11 @@ const { Server } = require('./lib/server/Server/Server');
   // const rawIncomingUrl = 'users/get';
   const rawIncomingUrl = 'users/get/23?apiKey=123&key=avx';
 
-  const { handler, params, query } = new URLParser(rawIncomingUrl, givenUrls);
+  const { handler, params, query } = new URLParser(
+    rawIncomingUrl,
+    'GET',
+    givenUrls
+  );
   console.log({ handler, params, query });
 
   new Server().start();
