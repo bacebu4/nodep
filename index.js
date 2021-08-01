@@ -2,7 +2,7 @@
 
 // const Config = require('./lib/config');
 // const { Database } = require('./lib/sql/Database');
-const server = require('./lib/server/Server/http');
+const server = require('./lib/server/http');
 
 // @ts-check
 
