@@ -1,9 +1,7 @@
 'use strict';
 
 const queryBuilder = require('../../lib/sql/QueryBuilder');
-const {
-  WhereClauseBuilder,
-} = require('../../lib/sql/QueryBuilder/WhereClauseBuilder');
+const whereClauseBuilder = require('../../lib/sql/QueryBuilder/whereClauseBuilder');
 
 describe('query builder', () => {
   describe('select query', () => {
@@ -43,7 +41,7 @@ describe('query builder', () => {
     it.each(cases)(
       'when given %j produces %j',
       (given, [expectedClause, expectedArgs]) => {
-        const res = new WhereClauseBuilder(given);
+        const res = whereClauseBuilder(given);
 
         expect(res.clause).toEqual(expectedClause);
         expect(res.args).toEqual(expectedArgs);
@@ -51,7 +49,7 @@ describe('query builder', () => {
     );
 
     it('mind the offset', () => {
-      const res = new WhereClauseBuilder({ age: '>10', id: 2 }, 1);
+      const res = whereClauseBuilder({ age: '>10', id: 2 }, 1);
 
       expect(res.clause).toEqual(' WHERE "age" > $2 AND "id" = $3');
       expect(res.args).toEqual(['10', 2]);
