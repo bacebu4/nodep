@@ -13,8 +13,8 @@ describe('select query', () => {
   ];
 
   it.each(cases)('when given %j produces %s', (given, expected) => {
-    const res = selectClauseBuilder(given);
+    const { clause } = selectClauseBuilder(given);
 
-    expect(res.clause).toEqual(expected);
+    expect(clause).toEqual(expected);
   });
 });
