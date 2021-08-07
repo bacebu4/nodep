@@ -44,5 +44,19 @@ const path = require('path');
   server(routes).start();
   const taskPath = path.join(__dirname, 'longOperation.js');
   const workerPool = new WorkerPool(taskPath, 3, 3000);
-  workerPool.run('vas', 22, 'male');
+  const args = [
+    ['vas', 22, '1'],
+    ['vas', 22, '2'],
+    ['vas', 22, '3'],
+    ['vas', 22, '4'],
+    ['vas', 22, '5'],
+    ['vas', 22, '6'],
+  ];
+
+  try {
+    const res = await Promise.all(args.map((a) => workerPool.run(...a)));
+    console.log('res', res);
+  } catch {
+    console.error('some errors');
+  }
 })();
