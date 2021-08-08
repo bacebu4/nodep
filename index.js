@@ -43,7 +43,7 @@ const path = require('path');
 
   server(routes).start();
   const taskPath = path.join(__dirname, 'longOperation.js');
-  const workerPool = new WorkerPool(taskPath, 3, 3000);
+  const workerPool = new WorkerPool(taskPath, 3);
   const args = [
     ['vas', 22, '1'],
     ['vas', 22, '2'],
